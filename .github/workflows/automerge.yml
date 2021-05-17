@@ -1,31 +1,20 @@
-name: automerge
+name: CI notify
+
+# Only trigger, when the build workflow succeeded
 on:
-  pull_request:
-    types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
-  status: {}
   workflow_run:
     workflows: ["CI"]
     types:
       - completed
+
 jobs:
-  automerge:
+  merge:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: automerge
-        uses: "pascalgn/automerge-action@v0.14.1"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 1
+          method: squash
