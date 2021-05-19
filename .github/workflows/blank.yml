@@ -25,23 +25,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: ech hello world
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      
-      - name: Create Status Check
-        id: vars
-        run: |
-            echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - name: Create SC
-        run: |
-            curl \
-            -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/mxmyrmnk/cypress-test/statuses/${{ steps.vars.outputs.sha_short }} \
-            -d '{"state":"state"}'
-            echo ${{ steps.vars.outputs.sha_short }}
+        run: echo hello world
