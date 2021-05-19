@@ -35,7 +35,7 @@ jobs:
       
       - name: Create Status Check
         env: 
-          SHA: ${{GITHUB_SHA}}
+          SHA: ${GITHUB_SHA}
         run: |
             curl \
             -X POST \
