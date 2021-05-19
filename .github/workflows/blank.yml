@@ -34,12 +34,14 @@ jobs:
           echo test, and deploy your project.
       
       - name: Create Status Check
-        env: 
-          SHA: ${GITHUB_SHA}
+        id: vars
+        run: |
+            echo "::set-output name=sha_short::$(git rev-parse --short HEAD)
+      - name: Create SC
         run: |
             curl \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/mxmyrmnk/cypress-test/statuses/SHA \
+            https://api.github.com/repos/mxmyrmnk/cypress-test/statuses/${{ steps.vars.outputs.sha_short }} \
             -d '{"state":"state"}'
-            echo ${{SHA}}
+            echo ${{ steps.vars.outputs.sha_short }}
