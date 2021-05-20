@@ -20,7 +20,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    pr_labbeled:
+    pr_labeled:
+      name: PR Labeled
       runs-on: ubuntu-latest
       steps:
         - name: pr_labeled
