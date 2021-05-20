@@ -1,18 +1,31 @@
 name: Cypress tests
 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
-     branches: main
-     types: labeled
+     branches: [main]
+     types: [labeled]
      
-  
+  issue_comment:
+    types: [created]
+    
   workflow_dispatch:
 
 
 jobs:
+  pr_labeled:
+      name: PR Labeled
+      runs-on: ubuntu-latest
+      steps:
+        - name: pr_labeled
+          id: check_label 
+          run: exit 0
+          if: contains( github.event.pull_request.labels.*.name, 'test')
+        - name: otherwise
+          run: exit 1
+          
   cypress-test:
     name: Run on Chrome 83
+    needs: pr_labeled
     runs-on: ubuntu-18.04
     container: cypress/browsers:node12.18.0-chrome83-ff77
     steps:
