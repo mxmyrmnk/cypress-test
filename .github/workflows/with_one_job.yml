@@ -1,8 +1,8 @@
 name: Workflow with one job
 
 on:
-  pull_request:
-    branches: main
+#   pull_request:
+#     branches: main
     
   issue_comment:
       
