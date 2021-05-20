@@ -22,6 +22,7 @@ jobs:
           if: contains( github.event.pull_request.labels.*.name, 'test')
         - name: otherwise
           run: exit 1
+          if: false == contains( github.event.pull_request.labels.*.name, 'test')
           
   cypress-test:
     name: Run on Chrome 83
