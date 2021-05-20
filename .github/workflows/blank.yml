@@ -27,7 +27,7 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Comment on PR ${{ github.event.issue.number }}
+      - run: echo "Comment on PR ${{ github.event.issue.number }}"
   deploy:
     runs-on: ubuntu-latest
     needs: pr_commented
