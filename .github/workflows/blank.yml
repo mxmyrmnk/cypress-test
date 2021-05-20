@@ -21,15 +21,11 @@ jobs:
   pr_commented:
     # This job only runs for pull request comments
     name: PR comment
-    runs-on: ubuntu-latest
     
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
     steps:
-         
       - run: echo "Comment on PR #${{ github.event.issue.number }}"
-        if: ${{ github.event.issue.pull_request }}
-      - run: exit 1
-        if: ${{ !github.event.issue.pull_request }}
-          
   deploy:
     runs-on: ubuntu-latest
     needs: pr_commented
