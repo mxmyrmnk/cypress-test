@@ -25,7 +25,7 @@ jobs:
       steps:
         - name: pr_labeled
           id: check_label 
-        - run: echo hello world
+          run: echo hello world
           if: contains( github.event.pull_request.labels.*.name, 'deploy')
 #   pr_commented:
 #     # This job only runs for pull request comments
