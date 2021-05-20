@@ -38,7 +38,9 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - run: 'echo Found it!'
-        if: steps.check.outputs.triggered == 'true'
+        if: |
+          steps.check.outputs.triggered == 'true'
+          exit 0
       - run: exit 1
         if: steps.check.outputs.triggered == 'false'
         
