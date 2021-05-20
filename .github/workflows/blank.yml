@@ -40,7 +40,6 @@ jobs:
       - run: 'echo Found it!'
         if: |
           steps.check.outputs.triggered == 'true'
-          exit 0
       - run: exit 1
         if: steps.check.outputs.triggered == 'false'
         
