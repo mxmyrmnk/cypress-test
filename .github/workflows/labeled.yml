@@ -21,11 +21,12 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
     pr_labbeled:
-      name: pr_labeled
-      id: check_label 
       runs-on: ubuntu-latest
-      run: echo hello world
-      if: contains( github.event.pull_request.labels.*.name, 'deploy')
+      steps:
+        - name: pr_labeled
+          id: check_label 
+        - run: echo hello world
+          if: contains( github.event.pull_request.labels.*.name, 'deploy')
 #   pr_commented:
 #     # This job only runs for pull request comments
 #     name: PR comment
